@@ -1,0 +1,29 @@
+# Credits: https://github.com/MiGoller/dc-systemd-template
+# ln -s /lib/systemd/system/dc@.service
+[Unit]
+Description=%i service powered by docker compose
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+TimeoutStartSec=300
+
+#   Create a directory for each docker-compose service at /srv/docker/.
+#   Name the directory as the service.
+WorkingDirectory=/srv/docker/%i
+
+#   Remove old containers, images and volumes and update it
+ExecStartPre=-/usr/local/bin/docker-compose down
+ExecStartPre=-/usr/local/bin/docker-compose rm -f
+#   Comment the following to not automatically update your images!
+#ExecStartPre=/usr/bin/docker-compose pull
+
+#   Run Compose up on service start.
+ExecStart=/usr/local/bin/docker-compose up
+
+#   Run Compose down, remove containers and volumes on service stop.
+ExecStop=/usr/local/bin/docker-compose down
+
+[Install]
+WantedBy=multi-user.target

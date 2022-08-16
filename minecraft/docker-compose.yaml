@@ -1,0 +1,16 @@
+version: "2"
+services:
+  minecraft-with-mods:
+    image: itzg/minecraft-server:latest
+    ports: 
+      - 45566:45566
+    environment:
+      - OVERRIDE_SERVER_PROPERTIES=true
+      - TYPE=FABRIC
+      - MEMORY=2G
+      - SEED=319999999
+      - EULA=true
+      - SERVER_PORT=45566
+
+    volumes:
+      - ./data:/data
