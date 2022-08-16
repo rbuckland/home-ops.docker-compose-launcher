@@ -28,7 +28,7 @@ Uses a directory name as convention.
 
 (assumed `sudo su - `)
 1. mkdir -p `/srv/docker/minecraft-with-mods`
-2. add [mine-craft/docker-compose.yml](minecraft/docker-compose.yml) to `/srv/docker/minecraft-with-mods`
+2. add [minecraft/docker-compose.yml](minecraft/docker-compose.yml) to `/srv/docker/minecraft-with-mods`
 3. cp the file [dc@.service](dc@.service) to  `/lib/systemd/system/dc@.service`
 4. Install the systemd target 
      ```
